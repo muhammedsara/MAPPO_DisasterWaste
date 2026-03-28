@@ -1,0 +1,10 @@
+# S1-Small: Unit testing & validation
+scenario_name: S1_SMALL
+num_nodes: 15
+num_generation_sites: 8
+num_vehicles: 4
+area_size_km: 40
+damage_rate: 0.03
+damage_severity: 0.20
+repair_rate: 0.030
+episode_horizon: 100

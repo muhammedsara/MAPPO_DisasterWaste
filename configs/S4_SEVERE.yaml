@@ -1,0 +1,10 @@
+# S4-Severe: Resilience under catastrophic damage
+scenario_name: S4_SEVERE
+num_nodes: 33
+num_generation_sites: 20
+num_vehicles: 10
+area_size_km: 80
+damage_rate: 0.12
+damage_severity: 0.45
+repair_rate: 0.010
+episode_horizon: 250
