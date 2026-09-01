@@ -1,0 +1,82 @@
+##########################################################################################
+# 1. MAIN MULTI-SEED BENCHMARK (30 seeds, paired)
+##########################################################################################
+
+===== S1_SMALL  (n={'ClarkeWright': 30, 'GeneticAlgorithm': 30, 'MAPPO': 30, 'NearestNeighbor': 30}) =====
+                    cost_m    cost_s    emis_m    emis_s   sl_m   sl_s    rew_m  rew_s
+algorithm                                                                             
+ClarkeWright      5996.608     0.000  6097.574     0.000  0.027  0.001 -260.525  6.613
+GeneticAlgorithm  1954.165  1232.264  1829.679  1018.499  0.015  0.010 -248.255  9.938
+MAPPO             4710.922    82.036  5073.781   129.170  0.114  0.005 -184.742  9.275
+NearestNeighbor   6006.796     0.000  6473.604     0.000  0.121  0.003 -219.897  6.620
+   MAPPO vs NearestNeighbor  reward p=1.86e-09 | cost p=1.73e-06
+   MAPPO vs ClarkeWright     reward p=1.86e-09 | cost p=1.73e-06
+   MAPPO vs GeneticAlgorithm reward p=1.86e-09 | cost p=1.86e-09
+
+===== S2_MEDIUM  (n={'ClarkeWright': 30, 'GeneticAlgorithm': 30, 'MAPPO': 30, 'NearestNeighbor': 30, 'SinglePPO': 30}) =====
+                     cost_m    cost_s     emis_m    emis_s   sl_m   sl_s    rew_m   rew_s
+algorithm                                                                                
+ClarkeWright      72352.555     0.000  96206.967     0.000  0.005  0.000 -450.920   9.877
+GeneticAlgorithm  14172.634  6986.781  17783.084  9609.052  0.002  0.001 -403.853  13.531
+MAPPO              7652.448  2043.959   8758.751  2743.411  0.010  0.001 -374.550   9.791
+NearestNeighbor   24593.762     0.000  32409.818     0.000  0.006  0.000 -406.289   9.873
+SinglePPO         10023.919     0.000  13324.032     0.000  0.003  0.000 -401.370   9.853
+   MAPPO vs NearestNeighbor  reward p=1.86e-09 | cost p=1.73e-06
+   MAPPO vs ClarkeWright     reward p=1.86e-09 | cost p=1.73e-06
+   MAPPO vs GeneticAlgorithm reward p=1.86e-09 | cost p=5.59e-05
+
+===== S3_LARGE  (n={'ClarkeWright': 30, 'GeneticAlgorithm': 30, 'MAPPO': 30, 'NearestNeighbor': 30}) =====
+                      cost_m     cost_s      emis_m     emis_s   sl_m  sl_s     rew_m   rew_s
+algorithm                                                                                    
+ClarkeWright      196900.514      0.000  313948.102      0.000  0.001   0.0 -1124.973  26.441
+GeneticAlgorithm   89783.253  20280.583  139570.564  31542.589  0.001   0.0 -1096.680  27.949
+MAPPO              22781.294  18066.634   31843.414  28692.634  0.000   0.0 -1081.254  26.420
+NearestNeighbor   217916.876      0.000  348583.039      0.000  0.000   0.0 -1141.036  25.907
+   MAPPO vs NearestNeighbor  reward p=1.86e-09 | cost p=1.73e-06
+   MAPPO vs ClarkeWright     reward p=1.86e-09 | cost p=1.73e-06
+   MAPPO vs GeneticAlgorithm reward p=5.59e-09 | cost p=1.86e-09
+
+===== S4_SEVERE  (n={'ClarkeWright': 30, 'GeneticAlgorithm': 30, 'MAPPO': 30, 'NearestNeighbor': 30}) =====
+                     cost_m     cost_s     emis_m     emis_s  sl_m  sl_s    rew_m   rew_s
+algorithm                                                                                
+ClarkeWright      70315.175   3802.473  97107.413   5289.098   0.0   0.0 -927.439  29.616
+GeneticAlgorithm  11678.902   4365.046  14727.168   5112.954   0.0   0.0 -836.498  30.017
+MAPPO             17329.828  12373.617  23138.196  17271.849   0.0   0.0 -823.255  35.022
+NearestNeighbor   54170.509   1832.260  73461.770   2728.357   0.0   0.0 -871.005  28.882
+   MAPPO vs NearestNeighbor  reward p=3.73e-09 | cost p=1.86e-09
+   MAPPO vs ClarkeWright     reward p=1.86e-09 | cost p=1.86e-09
+   MAPPO vs GeneticAlgorithm reward p=9.52e-04 | cost p=5.23e-02
+
+##########################################################################################
+# 2. MASKING ABLATION (S2, 30 seeds)
+##########################################################################################
+       variant     cost   reward  service%  invalid/ep  reward_std
+          hard 7652.448 -374.550     1.037       0.000       9.791
+          none    0.000 -401.251     0.000    2000.000       9.873
+          soft    0.000 -401.251     0.000       0.000       9.873
+hard_corrupt10 7667.871 -372.734     1.068      35.267       8.515
+hard_corrupt20 7721.318 -371.867     1.084      71.367       9.810
+
+##########################################################################################
+# 3. REWARD-WEIGHT SENSITIVITY (S2, 30 seeds)  weights=cost,time,emis,recy
+##########################################################################################
+  variant             weights     cost  emission  service%   time  reward
+costHeavy 0.70,0.10,0.10,0.10  5847.65   6466.49      0.87 121.90 -380.88
+emisHeavy 0.10,0.10,0.70,0.10 28753.41  36144.60      1.17 610.98 -349.72
+     pe20 0.60,0.10,0.20,0.10  9960.80  10884.38      1.16 212.56 -362.62
+     pe40 0.40,0.10,0.40,0.10  9585.01  10651.60      1.07 202.09 -357.75
+     pe60 0.20,0.10,0.60,0.10 12148.25  14047.66      1.07 250.14 -357.16
+recyHeavy 0.10,0.10,0.10,0.70 10176.61  10899.93      1.31 214.61 -348.66
+timeHeavy 0.10,0.70,0.10,0.10  7975.48   8575.57      1.26 165.37 -364.92
+
+##########################################################################################
+# 4. FLEET-CAPACITY SCALING (S2, 30 seeds)
+##########################################################################################
+variant  cap_scale    cost  emission  service%  delivered  reward
+    x12       12.0 4987.08  15365.46      2.91    1005.85 -375.69
+     x3        3.0 4242.14   8553.92      1.50    1223.84 -370.49
+     x6        6.0 1726.05   5291.05      1.80    1059.52 -368.49
+
+##########################################################################################
+# 5. ZERO-SHOT (S2 model on unseen topologies)
+##########################################################################################

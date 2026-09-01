@@ -1,0 +1,44 @@
+# MAPPO-DisasterWaste: Core dependencies
+# ========================================
+
+# Scientific computing
+numpy>=1.24
+scipy>=1.11
+
+# Graph / network modelling
+networkx>=3.2
+
+# Deep learning (MAPPO)
+torch>=2.1
+
+# Multi-agent RL environment API
+pettingzoo>=1.24
+gymnasium>=0.29
+
+# Geospatial (optional, for realistic road networks)
+# osmnx>=1.9
+
+# Optimisation baselines
+# gurobipy>=11.0        # Requires Gurobi license
+ortools>=9.8
+
+# Meta-heuristics
+deap>=1.4
+
+# Experiment tracking
+# wandb>=0.16
+tensorboard>=2.15
+
+# Data analysis & visualisation
+pandas>=2.1
+matplotlib>=3.8
+seaborn>=0.13
+
+# Configuration management
+pyyaml>=6.0
+
+# Utilities
+tqdm>=4.66
+
+# Document parsing (dev dependency)
+python-docx>=1.1

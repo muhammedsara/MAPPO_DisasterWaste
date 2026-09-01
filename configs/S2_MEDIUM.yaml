@@ -1,0 +1,10 @@
+# S2-Medium: Primary training & benchmarking
+scenario_name: S2_MEDIUM
+num_nodes: 27
+num_generation_sites: 15
+num_vehicles: 10
+area_size_km: 80
+damage_rate: 0.05
+damage_severity: 0.30
+repair_rate: 0.020
+episode_horizon: 200
